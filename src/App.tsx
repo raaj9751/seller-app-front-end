@@ -38,7 +38,7 @@ const App: React.FC = () => (
     <IonPage>
       <IonHeader>
         <IonToolbar color="primary">
-          <IonTitle>Seller</IonTitle>
+          <IonTitle style={{ fontSize: 20 }}>CW Mart</IonTitle>
           {/* {user.apiOnline && <IonProgressBar type="indeterminate"></IonProgressBar>} */}
         </IonToolbar>
       </IonHeader>
