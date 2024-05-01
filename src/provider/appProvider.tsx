@@ -18,6 +18,7 @@ export function useAppContext() {
 
 export function AppContextProvider({ children }: any) {
   const [displayModel, setDisplayModel] = useState<ModelProps>({ isOpen: false, modelTitle: APP_DATA.APP_NAME, bodyRender: null });
+  const [userData, setUserData] = useState(null);
   const [present] = useIonToast();
   const appImage = (() => <IonImg
     style={{ width: "60%" }}
@@ -63,7 +64,7 @@ export function AppContextProvider({ children }: any) {
   }
 
   return (
-    <AppContext.Provider value={{ displayToast, displayModel: setDisplayModel, renderNoData, appImage }}>
+    <AppContext.Provider value={{ displayToast, displayModel: setDisplayModel, renderNoData, appImage, setUserData, userData }}>
       {children}
       {renderModel(displayModel)}
     </AppContext.Provider>

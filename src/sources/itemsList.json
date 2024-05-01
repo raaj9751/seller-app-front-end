@@ -1,0 +1,147 @@
+[
+  {
+    "label": "bricks",
+    "value": "bricks",
+    "items": [
+      {
+        "label": "red bricks",
+        "value": "red bricks"
+      },
+      {
+        "label": "fly ash bricks",
+        "value": "fly ash bricks"
+      },
+      {
+        "label": "aac bricks",
+        "value": "aac bricks"
+      },
+      {
+        "label": "concrete bricks",
+        "value": "concrete bricks"
+      },
+      {
+        "label": "light weight bricks",
+        "value": "light weight bricks"
+      },
+      {
+        "label": "hollow bricks",
+        "value": "hollow bricks"
+      }
+    ]
+  },
+  {
+    "label": "sand",
+    "value": "sand",
+    "items": [
+      {
+        "label": "river sand",
+        "value": "river sand"
+      },
+      {
+        "label": "p sand",
+        "value": "p sand"
+      },
+      {
+        "label": "m sand",
+        "value": "m sand"
+      }
+    ]
+  },
+  {
+    "label": "cement",
+    "value": "cement",
+    "items": []
+  },
+  {
+    "label": "reinforcement",
+    "value": "reinforcement",
+    "items": [
+      {
+        "label": "8 mm",
+        "value": "8 mm"
+      },
+      {
+        "label": "10 mm",
+        "value": "10 mm"
+      },
+      {
+        "label": "12 mm",
+        "value": "12 mm"
+      },
+      {
+        "label": "16 mm",
+        "value": "16 mm"
+      },
+      {
+        "label": "20 mm",
+        "value": "20 mm"
+      },
+      {
+        "label": "25 mm",
+        "value": "25 mm"
+      },
+      {
+        "label": "25 mm",
+        "value": "25 mm"
+      },
+      {
+        "label": "32 mm",
+        "value": "32 mm"
+      },
+      {
+        "label": "40 mm",
+        "value": "40 mm"
+      }
+    ]
+  },
+  {
+    "label": "paint",
+    "value": "paint",
+    "items": []
+  },
+  {
+    "label": "wood",
+    "value": "wood",
+    "items": [
+      {
+        "label": "window",
+        "value": "door"
+      }
+    ]
+  },
+  {
+    "label": "pipe",
+    "value": "pipe",
+    "items": [
+      {
+        "label": "elbow",
+        "value": "elbow"
+      },
+      {
+        "label": "tee",
+        "value": "tee"
+      },
+      {
+        "label": "flange pipe",
+        "value": "flange pipe"
+      },
+      {
+        "label": "coupling pipe",
+        "value": "coupling pipe"
+      },
+      {
+        "label": "valve pipe",
+        "value": "valve pipe"
+      },
+      {
+        "label": "pipe",
+        "value": "pipe"
+      }
+    ]
+  },
+  {
+    "label": "concrete and brick debris",
+    "value": "concrete and brick debris",
+    "items": []
+  }
+]

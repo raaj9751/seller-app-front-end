@@ -12,10 +12,13 @@ interface props {
 }
 
 const LoginPage: React.FC<props> = (props) => {
-    const { displayModel, appImage } = useAppContext();
+    const { displayModel, appImage, setUserData } = useAppContext();
     const history = useHistory();
 
-    const handleSuccess = async (data: any) => {}
+    const handleSuccess = async (data: any) => {
+        setUserData(data);
+        history.push('/list');
+    }
 
     return (
         <IonContent className="login-page-content">

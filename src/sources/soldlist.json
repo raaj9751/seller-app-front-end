@@ -1,0 +1,60 @@
+[
+  {
+    "productType": "Brick",
+    "productSubType": "Red Brick",
+    "quantity": "100",
+    "price": "10000",
+    "place": "chennai",
+    "email": "sample@gmail.com",
+    "date": "2020-10-10",
+    "imgUrl": "https://ionicframework.com/docs/img/demos/thumbnail.svg"
+  },
+  {
+    "productType": "Sand",
+    "productSubType": "River Sand",
+    "quantity": "100",
+    "price": "10000",
+    "place": "chennai",
+    "email": "sample@gmail.com",
+    "date": "2020-10-10",
+    "imgUrl": "https://ionicframework.com/docs/img/demos/thumbnail.svg"
+  },
+  {
+    "productType": "Wood",
+    "productSubType": "Window",
+    "quantity": "100",
+    "price": "10000",
+    "place": "chennai",
+    "email": "sample@gmail.com",
+    "date": "2020-10-10",
+    "imgUrl": "https://ionicframework.com/docs/img/demos/thumbnail.svg"
+  },
+  {
+    "productType": "Brick",
+    "productSubType": "Brick",
+    "quantity": "100",
+    "price": "10000",
+    "date": "2020-10-10",
+    "imgUrl": "https://ionicframework.com/docs/img/demos/thumbnail.svg"
+  },
+  {
+    "productType": "Brick",
+    "productSubType": "Red Brick",
+    "quantity": "100",
+    "price": "10000",
+    "place": "chennai",
+    "email": "sample@gmail.com",
+    "date": "2020-10-10",
+    "imgUrl": "https://ionicframework.com/docs/img/demos/thumbnail.svg"
+  },
+  {
+    "productType": "Brick",
+    "productSubType": "Red Brick",
+    "quantity": "100",
+    "price": "10000",
+    "place": "chennai",
+    "email": "sample@gmail.com",
+    "date": "2020-10-10",
+    "imgUrl": "https://ionicframework.com/docs/img/demos/thumbnail.svg"
+  }
+]
