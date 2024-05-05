@@ -20,3 +20,7 @@
   gap: 6rem;
   justify-content: center;
 }
+
+.alert-radio-label, ion-label, ion-card-title {
+  text-transform: capitalize;
+}

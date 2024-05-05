@@ -91,6 +91,7 @@ const AxiosCall = (
         })
         .catch((err) => {
           console.log(err);
+          // faultHandler && faultHandler(err);
         });
     });
   } else {
@@ -103,6 +104,7 @@ const AxiosCall = (
         })
         .catch((err) => {
           console.log(err);
+          // faultHandler && faultHandler(err);
         });
     });
   }

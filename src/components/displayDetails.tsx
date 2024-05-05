@@ -33,14 +33,14 @@ const DisplayDetails: React.FC<props> = (props: any) => {
     }
 
     const handleReject = () => {
-        apiService("post", { product_id: props?.dataProvider?.productId, cus_id: userData?.id }, "Reject", (res: any) => {
+        apiService("post", { purchase_id: props?.dataProvider?.id, cus_id: userData?.id }, "reject", (res: any) => {
             displayToast({ type: "success", msg: "Rejected Successfully" });
             displayModel((prev: any) => ({ ...prev, isOpen: false }));
         })
     }
 
     const handleApprove = () => {
-        apiService("post", { product_id: props?.dataProvider?.productId, cus_id: userData?.id }, "Approve", (res: any) => {
+        apiService("post", { purchase_id: props?.dataProvider?.id, cus_id: userData?.id }, "approve", (res: any) => {
             displayToast({ type: "success", msg: "Approved Successfully" });
             displayModel((prev: any) => ({ ...prev, isOpen: false }));
         })
@@ -53,10 +53,9 @@ const DisplayDetails: React.FC<props> = (props: any) => {
                 <IonButton slot='end' id="buy-alert" onClick={handleBuy}>Request <IonIcon icon={cart}></IonIcon></IonButton>
             </IonToolbar>}
             {Boolean(!props?.disableApprove) && <><IonToolbar>
-                <IonButton slot='end' id="buy-alert" onClick={handleReject}>Reject <IonIcon icon={close}></IonIcon></IonButton>
-            </IonToolbar><IonToolbar>
-                    <IonButton slot='end' id="buy-alert" onClick={handleApprove}>Approve <IonIcon icon={checkmark}></IonIcon></IonButton>
-                </IonToolbar></>}
+                <IonButton id="buy-alert" slot='end' onClick={handleReject}>Reject <IonIcon icon={close}></IonIcon></IonButton>
+                <IonButton slot='end' id="buy-alert" onClick={handleApprove}>Approve <IonIcon icon={checkmark}></IonIcon></IonButton>
+            </IonToolbar></>}
         </IonContent>
     );
 };

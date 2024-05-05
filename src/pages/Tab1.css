@@ -1,5 +1,6 @@
 .main-scroll-contain {
   padding: 0;
+  overflow: auto;
 }
 
 .back-Contain {

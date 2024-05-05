@@ -43,7 +43,10 @@ import Tab3 from './pages/Tab3';
 import { useAppContext } from './provider/appProvider';
 import Tab4 from './pages/tab4';
 
-setupIonicReact();
+setupIonicReact({
+  rippleEffect: true,
+  mode: 'md',
+});
 
 const App: React.FC = () => {
   const { userData, apiOnline } = useAppContext();
@@ -54,21 +57,21 @@ const App: React.FC = () => {
         <IonHeader>
           <IonToolbar color="primary">
             <IonTitle style={{ fontSize: 20 }}>CW Mart</IonTitle>
-            {apiOnline && <IonProgressBar type="indeterminate"></IonProgressBar>}
+            {apiOnline && <IonProgressBar color="dark"></IonProgressBar>}
           </IonToolbar>
         </IonHeader>
         <IonContent>
           <IonReactRouter>
             <IonTabs>
               <IonRouterOutlet>
-                <Route path="/">
-                  <Redirect to={userData ? "/list" : '/login'} />
-                </Route>
                 <Route exact path="/login"><LoginPage /></Route>
                 <Route exact path="/list"><Tab1 /></Route>
                 <Route exact path="/sales"><Tab2 /></Route>
                 <Route exact path="/purchase"><Tab3 /></Route>
                 <Route exact path="/profile"><Tab4 /></Route>
+                <Route exact path="/">
+                  <Redirect to={userData ? "/list" : '/login'} />
+                </Route>
               </IonRouterOutlet>
               <IonTabBar style={{ display: userData ? "" : "none" }} slot="bottom">
                 <IonTabButton tab="list" href="/list">

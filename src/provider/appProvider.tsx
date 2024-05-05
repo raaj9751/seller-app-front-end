@@ -19,7 +19,7 @@ export function useAppContext() {
 
 export function AppContextProvider({ children }: any) {
   const [displayModel, setDisplayModel] = useState<ModelProps>({ isOpen: false, modelTitle: APP_DATA.APP_NAME, bodyRender: null });
-  const [userData, setUserData] = useState(JSON.parse(localStorage.getItem("userData") || "") || null);
+  const [userData, setUserData] = useState(JSON.parse(localStorage.getItem("userData") || "null") || null);
   const [apiOnline, setApiOnline] = useState(false);
   const [present] = useIonToast();
   const appImage = (() => <IonImg
@@ -77,7 +77,7 @@ export function AppContextProvider({ children }: any) {
   }
 
   return (
-    <AppContext.Provider value={{ displayToast, displayModel: setDisplayModel, renderNoData, appImage, setUserData, userData, apiService, apiOnline }}>
+    <AppContext.Provider value={{ displayToast, displayModel: setDisplayModel, modelDetails: displayModel, renderNoData, appImage, setUserData, userData, apiService, apiOnline }}>
       {children}
       {renderModel(displayModel)}
     </AppContext.Provider>

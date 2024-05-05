@@ -16,7 +16,7 @@ const Tab1: React.FC = () => {
   const [dataProvider, setDataProvider] = useState<any>([]);
 
   const filteredData = useMemo(() => {
-    return dataProvider.filter((obj: any) => (obj?.cus_id !== String(userData?.id) && (String(obj.product_type).includes(searchResults) || obj.product_sub_type.includes(searchResults) || obj.quantity.includes(searchResults))));
+    return dataProvider.filter((obj: any) => (obj?.cus_id !== String(userData?.id) && (String(obj.product_type).includes(searchResults) || String(obj.product_sub_type).includes(searchResults) || String(obj.quantity).includes(searchResults))));
   }, [searchResults, dataProvider]);
   const renderData: any = [
     { label: "Product Type", dataField: "product_type", value: "", disabled: true },
@@ -70,7 +70,7 @@ const Tab1: React.FC = () => {
     <div className='back-Contain'>
       <IonRow className="ion-align-items-center">
         <IonCol size="10" style={{ padding: 0 }}>
-          <IonSearchbar animated debounce={2000} value={searchResults} onIonInput={handleChange} />
+          <IonSearchbar animated  value={searchResults} onIonInput={handleChange} />
         </IonCol>
         <IonCol size="2" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
           <IonIcon lazy size='large' icon={addCircleOutline} onClick={() => { handleAdd() }} />
@@ -78,14 +78,13 @@ const Tab1: React.FC = () => {
       </IonRow>
       <IonContent className='main-scroll-contain'>
         {Boolean(filteredData.length) ? filteredData.map((item: any) => <AdvancedCard item={item} disableFollow={true} selected={selected} key={item._id} onClick={() => { setSelected({ ...item }) }} />) : renderNoData()}
-        {/* <IonInfiniteScroll
+        <IonInfiniteScroll
           onIonInfinite={(ev) => {
-            if (searchResults.length === page * 20) setPage(page + 1);
-            setTimeout(() => ev.target.complete(), 500);
+            ev.target.complete()
           }}
         >
           <IonInfiniteScrollContent></IonInfiniteScrollContent>
-        </IonInfiniteScroll> */}
+        </IonInfiniteScroll>
       </IonContent>
     </div>
   );

@@ -10,7 +10,7 @@ import { useHistory } from 'react-router';
 const Tab4: React.FC = () => {
   const [formDirty, setFormDirty] = useState(false);
   const history = useHistory();
-  const { apiService, userData, setUserData } = useAppContext();
+  const { apiService, userData, setUserData, displayToast } = useAppContext();
   const [dataProvider, setDataProvider] = useState<any>({});
   const renderData: any = [
     { label: "Name", dataField: "name", value: "" },
@@ -29,6 +29,7 @@ const Tab4: React.FC = () => {
   const handleSubmit = () => {
     apiService("post", dataProvider, `updateProfile/${userData.id}`, (res: any) => {
       setFormDirty(false);
+      displayToast({ type: "success", msg: "Profile Updated Successfully" });
     })
   }
 

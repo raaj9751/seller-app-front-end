@@ -23,14 +23,14 @@ const AddItemView = ({ options }: any) => {
   };
 
   const handleCreate = () => {
-    if (!selected1?.value || !selected2?.value || !quantity || !price || !file.name) {
+    if (!selected1?.value || !quantity || !price || !file.name) {
       displayToast({ type: "dark", msg: "Please Provide All Details" });
       return
     }
     const formData = new FormData();
 
     formData.append("product_type", selected1.value);
-    formData.append("product_sub_type", selected2.value);
+    formData.append("product_sub_type", selected2.value || "");
     formData.append("quantity", quantity);
     formData.append("price", price);
     formData.append("image", file);
@@ -56,7 +56,7 @@ const AddItemView = ({ options }: any) => {
       <CustomTextInput label={"Price"} value={price || ""} onIonChange={(e: { detail: { value: any; }; }) => setPrice(e.detail.value!)} />
       <FilePicker label="Attachements" onFileAccepted={SetFiles} />
       <IonToolbar>
-        <IonButton slot='end' id="buy-alert" onClick={handleCreate}>Buy<IonIcon icon={cart}></IonIcon></IonButton>
+        <IonButton slot='end' id="buy-alert" onClick={handleCreate}>Create<IonIcon icon={cart}></IonIcon></IonButton>
       </IonToolbar>
     </IonContent>
   );
