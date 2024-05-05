@@ -10,12 +10,13 @@ const Tab2: React.FC = () => {
   const [searchResults, setSearchResults] = useState<any>("");
   const [page, setPage] = useState(1);
   const [selectedTab, setSelectedTab] = useState(1);
-  const { renderNoData, displayModel } = useAppContext();
+  const { renderNoData, displayModel, apiService, userData } = useAppContext();
+  const [dataProvider, setDataProvider] = useState<any>([]);
   const [selected, setSelected] = useState<any>({});
   const filteredData = useMemo(() => {
 
-    return Data.filter((obj: any) => String(obj.productType).includes(searchResults) || obj.productSubType.includes(searchResults) || obj.quantity.includes(searchResults));
-  }, [searchResults]);
+    return dataProvider.filter((obj: any) => ((obj.status === "Pending" || !obj.status) && String(obj.productType).includes(searchResults) || obj.productSubType.includes(searchResults) || obj.quantity.includes(searchResults)));
+  }, [searchResults, dataProvider]);
   const renderData: any = [
     { label: "Product Type", dataField: "productType", value: "", disabled: true },
     { label: "Product SubType", dataField: "productSubType", value: "", disabled: true },
@@ -42,10 +43,21 @@ const Tab2: React.FC = () => {
     displayModel && displayModel({ isOpen: true, modelTitle: title, bodyRender: renderDetails });
   }
 
+  // useEffect(() => {
+  //   if (selected && selected.productType)
+  //     handleOpenDetails(selected.productType);
+  // }, [selected])
+
   useEffect(() => {
-    if (selected && selected.productType)
-      handleOpenDetails(selected.productType);
-  }, [selected])
+    if (selectedTab === 1)
+      apiService("get", {}, `getProductByCust/${userData.id}`, (res: any) => {
+        setDataProvider(res?.data || []);
+      })
+    else
+      apiService("get", {}, `getPurchasedListbyCustomer/${userData.id}`, (res: any) => {
+        setDataProvider(res?.data || []);
+      })
+  }, [selectedTab])
 
   return (
     <div className='back-Contain'>
@@ -56,15 +68,15 @@ const Tab2: React.FC = () => {
         <IonCol><IonButton color={selectedTab === 1 ? 'primary' : 'light'} onClick={() => setSelectedTab(1)}>Your List</IonButton><IonButton color={selectedTab === 2 ? 'primary' : 'light'} onClick={() => setSelectedTab(2)}>Requested List</IonButton></IonCol>
       </IonRow>
       <IonContent className='main-scroll-contain'>
-        {Boolean(filteredData.length) ? filteredData.map((item: any) => <AdvancedCard item={item} disableFollow={true} selected={selected} key={item._id} onClick={() => { setSelected({ ...item }) }} />) : renderNoData()}
-        <IonInfiniteScroll
+        {Boolean(filteredData.length) ? filteredData.map((item: any) => <AdvancedCard item={ selectedTab === 1 ? item : {}} disableFollow={true} selected={selected} key={item._id} onClick={() => { setSelected({ ...item }) }} />) : renderNoData()}
+        {/* <IonInfiniteScroll
           onIonInfinite={(ev) => {
             if (searchResults.length === page * 20) setPage(page + 1);
             setTimeout(() => ev.target.complete(), 500);
           }}
         >
           <IonInfiniteScrollContent></IonInfiniteScrollContent>
-        </IonInfiniteScroll>
+        </IonInfiniteScroll> */}
       </IonContent>
     </div>
   );

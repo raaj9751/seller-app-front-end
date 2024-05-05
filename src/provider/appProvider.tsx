@@ -1,8 +1,9 @@
 import { IonButtons, IonContent, IonHeader, IonIcon, IonImg, IonModal, IonProgressBar, IonText, IonTitle, IonToolbar, useIonToast } from '@ionic/react';
 import { checkmark, clipboard, close, closeCircleOutline } from 'ionicons/icons';
-import React, { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 import APPLogo from '../assets/logo.png';
 import { APP_DATA } from '../constants';
+import { AxiosCall } from '../service/apiCall';
 
 interface ModelProps {
   isOpen: any,
@@ -18,7 +19,8 @@ export function useAppContext() {
 
 export function AppContextProvider({ children }: any) {
   const [displayModel, setDisplayModel] = useState<ModelProps>({ isOpen: false, modelTitle: APP_DATA.APP_NAME, bodyRender: null });
-  const [userData, setUserData] = useState(null);
+  const [userData, setUserData] = useState(JSON.parse(localStorage.getItem("userData") || "") || null);
+  const [apiOnline, setApiOnline] = useState(false);
   const [present] = useIonToast();
   const appImage = (() => <IonImg
     style={{ width: "60%" }}
@@ -27,7 +29,7 @@ export function AppContextProvider({ children }: any) {
   ></IonImg>)();
 
   const displayToast = (toastObj: any) => {
-    const icons: any = { "success": checkmark, "primary": checkmark, "dark": close, "secondary": clipboard, };
+    const icons: any = { "success": checkmark, "primary": checkmark, "dark": close, "secondary": clipboard };
 
     present({
       message: toastObj.msg,
@@ -35,6 +37,17 @@ export function AppContextProvider({ children }: any) {
       position: "top",
       color: toastObj.type,
       icon: icons[toastObj.type] || ''
+    });
+  }
+
+  const apiService = (type: any, data: {} | undefined, api: any, resultHandler?: any, faultHandler?: any) => {
+    setApiOnline(true);
+    AxiosCall(type, data, api, (res: any) => {
+      setApiOnline(false);
+      resultHandler && resultHandler(res);
+    }, (err: any) => {
+      setApiOnline(false);
+      faultHandler && faultHandler(err);
     });
   }
 
@@ -56,7 +69,7 @@ export function AppContextProvider({ children }: any) {
           <IonButtons style={{ paddingRight: 10, cursor: "pointer" }} slot="end" onClick={() => { setDisplayModel((data: any) => ({ ...data, isOpen: false, bodyRender: null })) }}>
             <IonIcon style={{ width: 30, height: 30 }} icon={closeCircleOutline}></IonIcon>
           </IonButtons>
-          {/* {user.apiOnline && <IonProgressBar type="indeterminate"></IonProgressBar>} */}
+          {apiOnline && <IonProgressBar type="indeterminate"></IonProgressBar>}
         </IonToolbar>
       </IonHeader>
       {isOpen && bodyRender && bodyRender()}
@@ -64,7 +77,7 @@ export function AppContextProvider({ children }: any) {
   }
 
   return (
-    <AppContext.Provider value={{ displayToast, displayModel: setDisplayModel, renderNoData, appImage, setUserData, userData }}>
+    <AppContext.Provider value={{ displayToast, displayModel: setDisplayModel, renderNoData, appImage, setUserData, userData, apiService, apiOnline }}>
       {children}
       {renderModel(displayModel)}
     </AppContext.Provider>

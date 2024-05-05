@@ -6,18 +6,20 @@ import { useAppContext } from '../provider/appProvider';
 import GoogleLoginButton from '../components/googleAuth';
 
 interface props {
-    redirectToMainTab: any;
-    setUserDetails: any;
-    userDetails: any;
 }
 
 const LoginPage: React.FC<props> = (props) => {
-    const { displayModel, appImage, setUserData } = useAppContext();
+    const { displayModel, appImage, setUserData, apiService } = useAppContext();
     const history = useHistory();
 
     const handleSuccess = async (data: any) => {
-        setUserData(data);
-        history.push('/list');
+        apiService("post", {
+            email: data.email, name: data.name, image_url: data.imageUrl
+        }, "login", (res: any) => {
+            setUserData(res);
+            localStorage.setItem("userData", JSON.stringify(res));
+            history.push('/list');
+        })
     }
 
     return (

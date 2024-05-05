@@ -43,7 +43,7 @@ export const FilePicker = ({
             />
             <IonButton fill="clear" onClick={handleFileInput}>
                 <IonIcon slot="icon-only" icon={cloudUploadOutline} />
-                Choose File 
+                &nbsp; Choose File
             </IonButton>
             <input
                 type="file"

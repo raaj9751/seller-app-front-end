@@ -1,7 +1,6 @@
 import { IonCol, IonContent, IonIcon, IonInfiniteScroll, IonInfiniteScrollContent, IonRow, IonSearchbar } from '@ionic/react';
 import './Tab1.css';
 import { useEffect, useMemo, useState } from 'react';
-import Data from "../sources/list.json";
 import ItemsList from "../sources/itemsList.json";
 import { AdvancedCard } from '../components/advancedCard';
 import { useAppContext } from '../provider/appProvider';
@@ -12,17 +11,20 @@ import AddItemView from './view/addItem';
 const Tab1: React.FC = () => {
   const [searchResults, setSearchResults] = useState<any>("");
   const [page, setPage] = useState(1);
-  const { renderNoData, displayModel } = useAppContext();
+  const { renderNoData, displayModel, apiService, userData } = useAppContext();
   const [selected, setSelected] = useState<any>({});
+  const [dataProvider, setDataProvider] = useState<any>([]);
+
   const filteredData = useMemo(() => {
-    return Data.filter((obj: any) => String(obj.productType).includes(searchResults) || obj.productSubType.includes(searchResults) || obj.quantity.includes(searchResults));
-  }, [searchResults]);
+    return dataProvider.filter((obj: any) => (obj?.cus_id !== String(userData?.id) && (String(obj.product_type).includes(searchResults) || obj.product_sub_type.includes(searchResults) || obj.quantity.includes(searchResults))));
+  }, [searchResults, dataProvider]);
   const renderData: any = [
-    { label: "Product Type", dataField: "productType", value: "", disabled: true },
-    { label: "Product SubType", dataField: "productSubType", value: "", disabled: true },
+    { label: "Product Type", dataField: "product_type", value: "", disabled: true },
+    { label: "Product SubType", dataField: "product_sub_type", value: "", disabled: true },
     { label: "Quantity", dataField: "quantity", value: "", disabled: true },
     { label: "Price", dataField: "price", value: "", disabled: true },
-    { label: "Place", dataField: "place", value: "", disabled: true },
+    { label: "Phone", dataField: "phone", value: "", disabled: true },
+    { label: "Address", dataField: "address", value: "", disabled: true },
     { label: "Email", dataField: "email", value: "", disabled: true },
   ];
 
@@ -35,16 +37,18 @@ const Tab1: React.FC = () => {
     }
   };
 
-  const renderDetails = () => {
-    return (<DisplayDetails renderData={renderData} dataProvider={selected} />);
-  }
-
   const renderAdd = () => {
     return (<AddItemView options={ItemsList} />);
   }
 
   const handleOpenDetails = (title: any) => {
-    displayModel && displayModel({ isOpen: true, modelTitle: title, bodyRender: renderDetails });
+    apiService("get", {}, `getProduct/${selected?.id}`, (res: any) => {
+      displayModel && displayModel({
+        isOpen: true, modelTitle: title, bodyRender: () => {
+          return (<DisplayDetails disableApprove renderData={renderData} dataProvider={res?.data} />);
+        }
+      });
+    })
   }
 
   const handleAdd = () => {
@@ -52,9 +56,15 @@ const Tab1: React.FC = () => {
   }
 
   useEffect(() => {
-    if (selected && selected.productType)
-      handleOpenDetails(selected.productType);
+    if (selected && selected["product_type"])
+      handleOpenDetails(selected["product_type"]);
   }, [selected])
+
+  useEffect(() => {
+    apiService("get", {}, "getAllProducts/sell", (res: any) => {
+      setDataProvider(res?.products || []);
+    })
+  }, [])
 
   return (
     <div className='back-Contain'>
@@ -68,14 +78,14 @@ const Tab1: React.FC = () => {
       </IonRow>
       <IonContent className='main-scroll-contain'>
         {Boolean(filteredData.length) ? filteredData.map((item: any) => <AdvancedCard item={item} disableFollow={true} selected={selected} key={item._id} onClick={() => { setSelected({ ...item }) }} />) : renderNoData()}
-        <IonInfiniteScroll
+        {/* <IonInfiniteScroll
           onIonInfinite={(ev) => {
             if (searchResults.length === page * 20) setPage(page + 1);
             setTimeout(() => ev.target.complete(), 500);
           }}
         >
           <IonInfiniteScrollContent></IonInfiniteScrollContent>
-        </IonInfiniteScroll>
+        </IonInfiniteScroll> */}
       </IonContent>
     </div>
   );

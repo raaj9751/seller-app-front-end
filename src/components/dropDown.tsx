@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import {
     IonItem,
-    IonLabel,
-    IonList,
-    IonToggle,
+    IonSelect,
+    IonSelectOption,
 } from '@ionic/react';
 
 interface DropDownProps {
@@ -11,43 +10,24 @@ interface DropDownProps {
     onSelect: (selected: any) => void;
     selectedOptions?: any;
     label?: string;
+    multiple?: boolean;
 }
 
-const DropDown: React.FC<DropDownProps> = ({ options, onSelect, selectedOptions, label }) => {
-    const [showList, setShowList] = useState<boolean>(false);
-    const [selected, setSelected] = useState<any>(selectedOptions || []);
-    const toggleShowList = () => setShowList(!showList);
+const DropDown: React.FC<DropDownProps> = ({ options, onSelect, selectedOptions, label, multiple }) => {
+    const [selected, setSelected] = useState<any>(selectedOptions || "");
 
-    const handleSelect = (option: any) => {
-        if (selected.includes(option.value)) {
-            setSelected((prev: any) => prev.filter((item: any) => item !== option.value));
-            onSelect({});
-        } else {
-            setSelected((prev: any) => [...prev, option.value]);
-            onSelect(option);
-        }
-        setShowList(false);
+    const handleSelect = (values: any) => {
+        setSelected(values);
+        onSelect(values);
     };
 
     return (
         <div>
-            <IonItem onClick={toggleShowList}>
-                <IonLabel>
-                    {selected?.join(', ') || label || 'Select'}
-                </IonLabel>
-                <IonToggle checked={showList} />
+            <IonItem>
+                <IonSelect label={label} placeholder="Select" multiple={multiple} value={selected} onIonChange={(e) => { handleSelect(e.detail.value) }}>
+                    {options.map((option: any) => (<IonSelectOption key={option?.value} value={option?.value}>{option?.label}</IonSelectOption>))}
+                </IonSelect>
             </IonItem>
-            {showList && (
-                <IonList>
-                    {options.map((option: any) => (
-                        <IonItem key={option?.value} color={selected.includes(option.value) ? 'primary' : ''} onClick={() => handleSelect(option)}>
-                            <IonLabel>
-                                {option.label}
-                            </IonLabel>
-                        </IonItem>
-                    ))}
-                </IonList>
-            )}
         </div>
     );
 };

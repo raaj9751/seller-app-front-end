@@ -12,7 +12,8 @@ import {
   IonTitle,
   IonToolbar,
   setupIonicReact,
-  IonTabs
+  IonTabs,
+  IonProgressBar
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 
@@ -45,7 +46,7 @@ import Tab4 from './pages/tab4';
 setupIonicReact();
 
 const App: React.FC = () => {
-  const { userData } = useAppContext();
+  const { userData, apiOnline } = useAppContext();
 
   return (
     <IonApp>
@@ -53,18 +54,21 @@ const App: React.FC = () => {
         <IonHeader>
           <IonToolbar color="primary">
             <IonTitle style={{ fontSize: 20 }}>CW Mart</IonTitle>
-            {/* {user.apiOnline && <IonProgressBar type="indeterminate"></IonProgressBar>} */}
+            {apiOnline && <IonProgressBar type="indeterminate"></IonProgressBar>}
           </IonToolbar>
         </IonHeader>
         <IonContent>
           <IonReactRouter>
             <IonTabs>
               <IonRouterOutlet>
-                <Route exact path="/" component={LoginPage} />
-                <Route exact path="/list" component={Tab1} />
-                <Route exact path="/sales" component={Tab2} />
-                <Route exact path="/purchase" component={Tab3} />
-                <Route exact path="/profile" component={Tab4} />
+                <Route path="/">
+                  <Redirect to={userData ? "/list" : '/login'} />
+                </Route>
+                <Route exact path="/login"><LoginPage /></Route>
+                <Route exact path="/list"><Tab1 /></Route>
+                <Route exact path="/sales"><Tab2 /></Route>
+                <Route exact path="/purchase"><Tab3 /></Route>
+                <Route exact path="/profile"><Tab4 /></Route>
               </IonRouterOutlet>
               <IonTabBar style={{ display: userData ? "" : "none" }} slot="bottom">
                 <IonTabButton tab="list" href="/list">
