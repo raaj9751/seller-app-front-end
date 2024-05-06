@@ -1,7 +1,7 @@
 import { CapacitorConfig } from "@capacitor/cli";
 
 const config: CapacitorConfig = {
-  appId: "io.ionic.starter",
+  appId: "com.fairpirates.cwmart",
   appName: "CW Mart",
   webDir: "dist",
   server: {
@@ -11,7 +11,7 @@ const config: CapacitorConfig = {
     GoogleAuth: {
       scopes: ["profile", "email"],
       serverClientId:
-        "471807870049-ulek4vks6u3fm10tgqghid06vqu0c19g.apps.googleusercontent.com",
+        "968654527208-3jdat9m8j62o6v8o1ai7q6m28jj5ht24.apps.googleusercontent.com",
       forceCodeForRefreshToken: true,
     },
   },

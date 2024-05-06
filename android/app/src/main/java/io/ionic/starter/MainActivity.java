@@ -1,4 +1,4 @@
-package io.ionic.starter;
+package com.fairpirates.cwmart;
 
 import com.getcapacitor.BridgeActivity;
 import android.os.Bundle;
