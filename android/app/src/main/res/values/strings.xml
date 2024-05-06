@@ -4,4 +4,5 @@
     <string name="title_activity_main">CW Mart</string>
     <string name="package_name">io.ionic.starter</string>
     <string name="custom_url_scheme">io.ionic.starter</string>
+    <string name="server_client_id">471807870049-ulek4vks6u3fm10tgqghid06vqu0c19g.apps.googleusercontent.com</string>
 </resources>

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "968654527208",
+    "project_id": "cwmart-31b71",
+    "storage_bucket": "cwmart-31b71.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:968654527208:android:58ffd3d1da2909d3e8875d",
+        "android_client_info": {
+          "package_name": "com.fairpirates.cwmart"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "968654527208-3jdat9m8j62o6v8o1ai7q6m28jj5ht24.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.fairpirates.cwmart",
+            "certificate_hash": "3c936fd9bcc3d5688cbde0ef52af44789a8d9a76"
+          }
+        },
+        {
+          "client_id": "968654527208-a00upkd8u9ssnkmga38flbk5dp348sf9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAeEUbRNdQ4OjCVQ4XaqWrPNBqtEjY7PNM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "968654527208-a00upkd8u9ssnkmga38flbk5dp348sf9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
