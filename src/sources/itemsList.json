@@ -105,6 +105,10 @@
     "items": [
       {
         "label": "window",
+        "value": "window"
+      },
+      {
+        "label": "door",
         "value": "door"
       }
     ]

@@ -3,6 +3,7 @@ import CustomTextInput from './textbox';
 import CustomToggle from './toggle';
 import { cart, checkmark, close } from 'ionicons/icons';
 import { useAppContext } from '../provider/appProvider';
+import types from "../sources/productTypes.json";
 
 interface props {
     renderData: any;
@@ -10,10 +11,12 @@ interface props {
     handleChange?: any;
     disableBuy?: any;
     disableApprove?: any;
+    enableimage?: any;
 }
 
 const DisplayDetails: React.FC<props> = (props: any) => {
     const { displayModel, displayToast, apiService, userData } = useAppContext();
+    const fields: any = types;
 
     const renderCustom = ({ label, dataField, value, disabled, isRequired }: any, data: any = {}) => {
         if (disabled) {
@@ -48,6 +51,7 @@ const DisplayDetails: React.FC<props> = (props: any) => {
 
     return (
         <IonContent>
+            {Boolean(props.enableimage) && <img src={props.dataProvider?.imageUrl || ""} style={{ width: '100%' }} />}
             {props.renderData.map((obj: any) => { return renderCustom(obj); })}
             {Boolean(!props?.disableBuy) && <IonToolbar>
                 <IonButton slot='end' id="buy-alert" onClick={handleBuy}>Request <IonIcon icon={cart}></IonIcon></IonButton>

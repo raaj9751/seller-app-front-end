@@ -1,0 +1,10 @@
+{
+  "bricks": "pieces",
+  "sand": "kg",
+  "cement": "bags",
+  "reinforcement": "kg",
+  "wood": "items",
+  "paint": "litre",
+  "pipe": "items",
+  "concrete and brick debris": "pieces"
+}

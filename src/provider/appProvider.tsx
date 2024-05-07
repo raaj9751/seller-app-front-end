@@ -69,7 +69,7 @@ export function AppContextProvider({ children }: any) {
           <IonButtons style={{ paddingRight: 10, cursor: "pointer" }} slot="end" onClick={() => { setDisplayModel((data: any) => ({ ...data, isOpen: false, bodyRender: null })) }}>
             <IonIcon style={{ width: 30, height: 30 }} icon={closeCircleOutline}></IonIcon>
           </IonButtons>
-          {apiOnline && <IonProgressBar type="indeterminate"></IonProgressBar>}
+          {apiOnline && <IonProgressBar color="light"></IonProgressBar>}
         </IonToolbar>
       </IonHeader>
       {isOpen && bodyRender && bodyRender()}

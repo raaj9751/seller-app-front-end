@@ -21,6 +21,6 @@
   justify-content: center;
 }
 
-.alert-radio-label, ion-label, ion-card-title {
+.alert-radio-label, ion-label, ion-card-title, ion-title {
   text-transform: capitalize;
 }

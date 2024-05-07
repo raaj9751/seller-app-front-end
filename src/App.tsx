@@ -56,8 +56,8 @@ const App: React.FC = () => {
       <IonPage>
         <IonHeader>
           <IonToolbar color="primary">
-            <IonTitle style={{ fontSize: 20 }}>CW Mart</IonTitle>
-            {apiOnline && <IonProgressBar color="dark"></IonProgressBar>}
+            <IonTitle style={{ fontSize: 20 }}>CW MART</IonTitle>
+            {apiOnline && <IonProgressBar color="light"></IonProgressBar>}
           </IonToolbar>
         </IonHeader>
         <IonContent>

@@ -5,6 +5,7 @@ import { FilePicker } from '../../components/filePicker';
 import CustomTextInput from '../../components/textbox';
 import { cart } from 'ionicons/icons';
 import { useAppContext } from '../../provider/appProvider';
+import ProductTypes from "../../sources/productTypes.json"
 
 const AddItemView = ({ options }: any) => {
   const [selected1, setSelected1] = useState<any>({});
@@ -13,6 +14,7 @@ const AddItemView = ({ options }: any) => {
   const [price, setPrice] = useState<any>('');
   const [file, SetFiles] = useState<any>([]);
   const { userData, displayModel, displayToast } = useAppContext();
+  const pTypes: any = ProductTypes;
 
   const handleSelect1 = (option: any) => {
     setSelected1(options.find((o: any) => typeof option === "string" ? o.value === option : option.includes(o.value)));
@@ -44,6 +46,7 @@ const AddItemView = ({ options }: any) => {
       },
       body: formData
     }).then(res => {
+      displayToast({ type: "success", msg: "Created has been Successfully" });
       displayModel((prev: any) => ({ ...prev, isOpen: false }));
     })
   }
@@ -52,8 +55,8 @@ const AddItemView = ({ options }: any) => {
     <IonContent>
       <DropDown label='Product Type' options={options} onSelect={handleSelect1} />
       {Boolean(selected1?.items && selected1?.items?.length) && <DropDown label='Product SubType' options={selected1?.items || []} onSelect={handleSelect2} />}
-      <CustomTextInput label={"Quantity"} value={quantity || ""} onIonChange={(e: { detail: { value: any; }; }) => setQuantity(e.detail.value!)} />
-      <CustomTextInput label={"Price"} value={price || ""} onIonChange={(e: { detail: { value: any; }; }) => setPrice(e.detail.value!)} />
+      <CustomTextInput label={`Quantity(${pTypes[selected1?.value] || "items"})`} value={quantity || ""} onIonChange={(e: { detail: { value: any; }; }) => setQuantity(e.detail.value!)} />
+      <CustomTextInput label={"Price(₹)"} value={price || ""} onIonChange={(e: { detail: { value: any; }; }) => setPrice(e.detail.value!)} />
       <FilePicker label="Attachements" onFileAccepted={SetFiles} />
       <IonToolbar>
         <IonButton slot='end' id="buy-alert" onClick={handleCreate}>Create<IonIcon icon={cart}></IonIcon></IonButton>

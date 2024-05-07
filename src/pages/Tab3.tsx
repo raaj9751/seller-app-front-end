@@ -13,7 +13,7 @@ const Tab3: React.FC = () => {
   const [selected, setSelected] = useState<any>({});
   const filteredData = useMemo(() => {
 
-    return dataProvider.filter((obj: any) => (String(obj?.product_detail?.product_type)?.includes(searchResults) || String(obj?.product_detail?.product_sub_type)?.includes(searchResults) || String(obj?.product_detail.quantity)?.includes(searchResults) || String(obj?.product_detail.email)?.includes(searchResults)));
+    return dataProvider.filter((obj: any) => (String(obj?.product_detail?.product_type)?.includes(searchResults.toLocaleLowerCase()) || String(obj?.product_detail?.product_sub_type)?.includes(searchResults.toLocaleLowerCase()) || String(obj?.product_detail.quantity)?.includes(searchResults.toLocaleLowerCase()) || String(obj?.product_detail.email)?.includes(searchResults.toLocaleLowerCase()) || String(obj?.product_detail.price)?.includes(searchResults.toLocaleLowerCase())));
   }, [searchResults, dataProvider]);
   const renderData: any = [
     { label: "Product Type", dataField: "product_type", value: "", disabled: true },

@@ -16,7 +16,7 @@ const Tab1: React.FC = () => {
   const [dataProvider, setDataProvider] = useState<any>([]);
 
   const filteredData = useMemo(() => {
-    return dataProvider.filter((obj: any) => (obj?.cus_id !== String(userData?.id) && (String(obj.product_type).includes(searchResults) || String(obj.product_sub_type).includes(searchResults) || String(obj.quantity).includes(searchResults))));
+    return dataProvider.filter((obj: any) => (obj?.cus_id !== String(userData?.id) && (String(obj.product_type).includes(searchResults.toLocaleLowerCase()) || String(obj.product_sub_type).includes(searchResults.toLocaleLowerCase()) || String(obj.quantity).includes(searchResults.toLocaleLowerCase()) || String(obj.price).includes(searchResults.toLocaleLowerCase()))));
   }, [searchResults, dataProvider]);
   const renderData: any = [
     { label: "Product Type", dataField: "product_type", value: "", disabled: true },
@@ -43,9 +43,10 @@ const Tab1: React.FC = () => {
 
   const handleOpenDetails = (title: any) => {
     apiService("get", {}, `getProduct/${selected?.id}`, (res: any) => {
+      console.log(res)
       displayModel && displayModel({
         isOpen: true, modelTitle: title, bodyRender: () => {
-          return (<DisplayDetails disableApprove renderData={renderData} dataProvider={res?.data} />);
+          return (<DisplayDetails disableApprove enableimage renderData={renderData} dataProvider={res?.data} />);
         }
       });
     })
@@ -70,7 +71,7 @@ const Tab1: React.FC = () => {
     <div className='back-Contain'>
       <IonRow className="ion-align-items-center">
         <IonCol size="10" style={{ padding: 0 }}>
-          <IonSearchbar animated  value={searchResults} onIonInput={handleChange} />
+          <IonSearchbar animated value={searchResults} onIonInput={handleChange} />
         </IonCol>
         <IonCol size="2" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
           <IonIcon lazy size='large' icon={addCircleOutline} onClick={() => { handleAdd() }} />
