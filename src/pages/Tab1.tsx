@@ -1,4 +1,4 @@
-import { IonCol, IonContent, IonIcon, IonInfiniteScroll, IonInfiniteScrollContent, IonRow, IonSearchbar } from '@ionic/react';
+import { IonCol, IonContent, IonIcon, IonInfiniteScroll, IonInfiniteScrollContent, IonRow, IonSearchbar, IonTitle } from '@ionic/react';
 import './Tab1.css';
 import { useEffect, useMemo, useState } from 'react';
 import ItemsList from "../sources/itemsList.json";
@@ -69,6 +69,7 @@ const Tab1: React.FC = () => {
 
   return (
     <div className='back-Contain'>
+      <IonTitle style={{ paddingLeft: 10, paddingTop: 10 }}>Materials List:</IonTitle>
       <IonRow className="ion-align-items-center">
         <IonCol size="10" style={{ padding: 0 }}>
           <IonSearchbar animated value={searchResults} onIonInput={handleChange} />

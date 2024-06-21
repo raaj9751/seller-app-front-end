@@ -7,3 +7,7 @@
   height: 100%;
   width: 100%;
 }
+
+.searchbar-input {
+  border-radius: 10px !important;
+}

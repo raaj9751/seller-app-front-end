@@ -6,18 +6,18 @@ export const AdvancedCard = ({ item = {}, onClick, selected = {}, disableSave }:
 
   return (<IonCard color={selected._id === item._id ? "" : ""} onClick={onClick}>
     <IonCardHeader style={{ paddingBottom: 0 }}>
-      {Boolean(item.product_type) && <IonCardTitle style={{ fontSize: 16, fontWeight: "600" }}>{item.product_type}</IonCardTitle>}
+      {Boolean(item.product_type) && <IonCardTitle style={{ fontSize: 16, fontWeight: "600", textTransform: "uppercase" }}>{item.product_type}</IonCardTitle>}
     </IonCardHeader>
     <IonList>
       <IonItem lines="none">
         {Boolean(item.image_url) && <IonThumbnail slot="start">
-          <img alt="Silhouette of mountains" src={item.image_url} />
+          <img style={{ borderRadius: 5 }} alt="Silhouette of mountains" src={item.image_url} />
         </IonThumbnail>}
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', fontSize: '14px' }}>
           {Boolean(item.product_sub_type) && <IonLabel>{item.product_sub_type || '-'}</IonLabel>}
-          {Boolean(item.quantity) && <IonLabel>{item.quantity } {fields[item.product_type] || "items"}</IonLabel>}
-          {Boolean(item.price) && <IonLabel>{item.price || '0'} ₹</IonLabel>}
-          {Boolean(item.createdAt || "") && <IonLabel>{new Date(item.createdAt || "").toDateString() || '-'}</IonLabel>}
+          {Boolean(item.quantity) && <IonLabel>{item.quantity} {fields[item.product_type] || "items"}</IonLabel>}
+          {Boolean(item.price) && <IonLabel>₹ {item.price || '0'}</IonLabel>}
+          {Boolean(item.createdAt || "") && <IonLabel>{new Date(item.createdAt || "").toLocaleDateString() || '-'}</IonLabel>}
         </div>
       </IonItem>
     </IonList>

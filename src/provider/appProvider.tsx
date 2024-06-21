@@ -33,7 +33,7 @@ export function AppContextProvider({ children }: any) {
 
     present({
       message: toastObj.msg,
-      duration: 1500,
+      duration: 3000,
       position: "top",
       color: toastObj.type,
       icon: icons[toastObj.type] || ''

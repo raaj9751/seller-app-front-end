@@ -46,7 +46,7 @@ const AddItemView = ({ options }: any) => {
       },
       body: formData
     }).then(res => {
-      displayToast({ type: "success", msg: "Created has been Successfully" });
+      displayToast({ type: "success", msg: "Material Item has been created Successfully" });
       displayModel((prev: any) => ({ ...prev, isOpen: false }));
     })
   }
