@@ -18,6 +18,7 @@ export const AdvancedCard = ({ item = {}, onClick, selected = {}, disableSave }:
           {Boolean(item.quantity) && <IonLabel>{item.quantity} {fields[item.product_type] || "items"}</IonLabel>}
           {Boolean(item.price) && <IonLabel>₹ {item.price || '0'}</IonLabel>}
           {Boolean(item.createdAt || "") && <IonLabel>{new Date(item.createdAt || "").toLocaleDateString() || '-'}</IonLabel>}
+          {Boolean(item.status) && <IonLabel style={{ textTransform: "uppercase" }}>{item.status}</IonLabel>}
         </div>
       </IonItem>
     </IonList>

@@ -11,7 +11,7 @@ import AddItemView from './view/addItem';
 const Tab1: React.FC = () => {
   const [searchResults, setSearchResults] = useState<any>("");
   const [page, setPage] = useState(1);
-  const { renderNoData, displayModel, apiService, userData } = useAppContext();
+  const { renderNoData, displayModel, apiService, userData, modelDetails } = useAppContext();
   const [selected, setSelected] = useState<any>({});
   const [dataProvider, setDataProvider] = useState<any>([]);
 
@@ -65,7 +65,7 @@ const Tab1: React.FC = () => {
     apiService("get", {}, "getAllProducts/sell", (res: any) => {
       setDataProvider(res?.products || []);
     })
-  }, [])
+  }, [modelDetails])
 
   return (
     <div className='back-Contain'>

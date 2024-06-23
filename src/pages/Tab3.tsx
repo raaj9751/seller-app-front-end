@@ -59,7 +59,7 @@ const Tab3: React.FC = () => {
         </IonCol>
       </IonRow>
       <IonContent className='main-scroll-contain'>
-        {Boolean(filteredData.length) ? filteredData.map((item: any) => <AdvancedCard item={item?.product_detail} disableFollow={true} selected={selected} key={item._id} onClick={() => { setSelected({ ...item }) }} />) : renderNoData()}
+        {Boolean(filteredData.length) ? filteredData.map((item: any) => <AdvancedCard item={{ ...item?.product_detail, status: item.status }} disableFollow={true} selected={selected} key={item._id} onClick={() => { setSelected({ ...item }) }} />) : renderNoData()}
         <IonInfiniteScroll
           onIonInfinite={(ev) => {
             ev.target.complete()
